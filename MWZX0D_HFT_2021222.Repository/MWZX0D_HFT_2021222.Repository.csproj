@@ -1,8 +1,34 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="formula_racing.mdf" />
+    <None Remove="formula_racing_log.ldf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="formula_racing.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="formula_racing_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.14" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.14" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.14" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.14" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.14" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.14">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MWZX0D_HFT_2021222.Models\MWZX0D_HFT_2021222.Models.csproj" />
