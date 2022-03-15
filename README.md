@@ -1,1 +1,1 @@
-[![Dokumentáció](https://api.netlify.com/api/v1/badges/ed56a1f2-8fb6-426c-9150-4ea3b34e48fd/deploy-status)](https://app.netlify.com/sites/mwzx0d-hft-2021222/deploys)
+[![Dokumentáció](https://img.shields.io/badge/Dokument%C3%A1ci%C3%B3-https%3A%2F%2Fmwzx0d--hft--2021222.netlify.app%2F%23%2F-lightgrey?style=for-the-badge&logo=appveyor)
