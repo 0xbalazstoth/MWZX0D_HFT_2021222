@@ -27,6 +27,7 @@ namespace MWZX0D_HFT_2021222.Models
 
         public DateTime Born { get; set; }
 
+        [ForeignKey(nameof(Team))]
         public int TeamId { get; set; } // Team, Fk
 
         public virtual Team Team { get; set; }

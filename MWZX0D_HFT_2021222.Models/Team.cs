@@ -24,6 +24,7 @@ namespace MWZX0D_HFT_2021222.Models
         [StringLength(240)]
         public string Principal { get; set; }
 
+        [ForeignKey(nameof(EngineManufacturer))]
         public int EngineManufacturerId { get; set; } // EngineManufacturer, Fk
 
         public virtual ICollection<Driver> Drivers { get; set; }
