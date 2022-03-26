@@ -2,11 +2,7 @@
 using MWZX0D_HFT_2021222.Repository.Database;
 using MWZX0D_HFT_2021222.Repository.Generic_Repository;
 using MWZX0D_HFT_2021222.Repository.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MWZX0D_HFT_2021222.Repository.ModelRepositories
 {
