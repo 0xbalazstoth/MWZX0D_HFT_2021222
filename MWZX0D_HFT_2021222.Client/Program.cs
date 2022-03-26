@@ -26,6 +26,7 @@ namespace MWZX0D_HFT_2021222.Client
             var q2 = teamLogic.GetEngineManufacturerByPrincipalNameIfContainsSpecificLetter('a');
             var q3 = driverLogic.GetDriversWhosNumberIsBetweenSpecificRange("ferrari", "mercedes", 5, 45);
             var q4 = driverLogic.GetAvgDriversAgeByTheSameEngineBasedTeams();
+            var q5 = driverLogic.GetSumPerHeadquarterAtLeastGivenValue(10);
             ;
         }
     }

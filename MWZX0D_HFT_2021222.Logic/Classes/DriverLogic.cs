@@ -67,12 +67,12 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
         public IEnumerable<DriversPerNationality> GetDriversPerNationality(int firstX)
         {
             return (from x in this.repo.ReadAll()
-                   group x by x.Nationality into g
-                   select new DriversPerNationality()
-                   {
+                    group x by x.Nationality into g
+                    select new DriversPerNationality()
+                    {
                         Nationality = g.Key,
                         Count = g.Count()
-                   }).OrderByDescending(x => x.Count).Take(firstX);
+                    }).OrderByDescending(x => x.Count).Take(firstX);
         }
 
         public class DriversPerNationality
@@ -87,7 +87,7 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
             return from x in this.repo.ReadAll()
                    where (x.Team.Name.ToUpper() == aTeam.ToUpper() || x.Team.Name.ToUpper() == bTeam.ToUpper()) && (x.Number >= fromNumber && x.Number <= toNumber)
                    select new GivenNumber()
-                   { 
+                   {
                        TeamName = x.Team.Name,
                        DriverName = x.Name,
                        Number = x.Number
@@ -117,6 +117,24 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
         {
             public string Engine { get; set; }
             public double Avg { get; set; }
+        }
+        #endregion
+        #region What is the sum of the number of drivers per headquarter, which is at least the given value.
+        public IEnumerable<SumNumberEngine> GetSumPerHeadquarterAtLeastGivenValue(int n)
+        {
+            return (from x in this.repo.ReadAll()
+                   group x by x.Team.LicensedIn into g
+                   select new SumNumberEngine()
+                   {
+                       HeadQuarter = g.Key,
+                       Sum = g.Sum(x => x.Number)
+                   }).Where(x => x.Sum >= n);
+        }
+
+        public class SumNumberEngine
+        {
+            public string HeadQuarter { get; set; }
+            public int Sum { get; set; }
         }
         #endregion
     }
