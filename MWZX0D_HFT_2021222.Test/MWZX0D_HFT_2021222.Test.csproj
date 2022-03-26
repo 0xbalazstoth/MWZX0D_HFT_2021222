@@ -1,17 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MWZX0D_HFT_2021222.Logic\MWZX0D_HFT_2021222.Logic.csproj" />
-    <ProjectReference Include="..\MWZX0D_HFT_2021222.Models\MWZX0D_HFT_2021222.Models.csproj" />
-    <ProjectReference Include="..\MWZX0D_HFT_2021222.Repository\MWZX0D_HFT_2021222.Repository.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\MWZX0D_HFT_2021222.Logic\MWZX0D_HFT_2021222.Logic.csproj" />
+		<ProjectReference Include="..\MWZX0D_HFT_2021222.Models\MWZX0D_HFT_2021222.Models.csproj" />
+		<ProjectReference Include="..\MWZX0D_HFT_2021222.Repository\MWZX0D_HFT_2021222.Repository.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-  </ItemGroup>
+	<ItemGroup>
+		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+		<PackageReference Include="Moq" Version="4.17.1" />
+		<PackageReference Include="NUnit" Version="3.13.2" />
+		<PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+	</ItemGroup>
 
 </Project>
