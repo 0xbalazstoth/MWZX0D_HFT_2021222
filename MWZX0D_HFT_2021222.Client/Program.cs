@@ -19,7 +19,8 @@ namespace MWZX0D_HFT_2021222.Client
             var driverRepo = new DriverRepository(ctx);
             var driverLogic = new DriverLogic(driverRepo);
 
-            var q1 = driverLogic.DriversOlderThan20AndTheyAreInHondaEngineBasedTeam();
+            //var q1 = driverLogic.DriversOlderThan20AndTheyAreInHondaEngineBasedTeam();
+            var q1 = driverLogic.GetDriversPerNationality();
             ;
         }
     }

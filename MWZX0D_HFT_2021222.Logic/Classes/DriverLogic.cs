@@ -81,5 +81,24 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
             public string TeamName;
             public int Age;
         }
+
+        #region How many drivers are included in one nationality, then sort in descending order and select only the first 3 nationalities.
+        public IEnumerable<DriversPerNationality> GetDriversPerNationality()
+        {
+            return (from x in this.repo.ReadAll()
+                   group x by x.Nationality into g
+                   select new DriversPerNationality()
+                   {
+                        Nationality = g.Key,
+                        Count = g.Count()
+                   }).OrderByDescending(x => x.Count).Take(3);
+        }
+
+        public class DriversPerNationality
+        {
+            public string Nationality { get; set; }
+            public int Count { get; set; }
+        }
+        #endregion
     }
 }
