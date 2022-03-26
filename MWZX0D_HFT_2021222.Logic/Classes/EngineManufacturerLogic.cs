@@ -2,6 +2,8 @@
 using MWZX0D_HFT_2021222.Logic.Interfaces;
 using MWZX0D_HFT_2021222.Models;
 using MWZX0D_HFT_2021222.Repository.Interfaces;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MWZX0D_HFT_2021222.Logic.Classes
@@ -35,7 +37,6 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
         {
             this.repo.Delete(id);
         }
-
         public EngineManufacturer Read(int id)
         {
             var em = this.repo.Read(id);
@@ -59,5 +60,7 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
         {
             this.repo.Update(item);
         }
+
+        // Non-crud methods
     }
 }

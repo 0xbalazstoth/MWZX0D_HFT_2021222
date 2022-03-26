@@ -63,8 +63,8 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
         }
 
         // Non-crud methods
-        #region How many drivers are included in one nationality, then sort in descending order and select only the first 3 nationalities.
-        public IEnumerable<DriversPerNationality> GetDriversPerNationality()
+        #region How many drivers are included in one nationality, then sort in descending order and select only the first x nationalities.
+        public IEnumerable<DriversPerNationality> GetDriversPerNationality(int firstX)
         {
             return (from x in this.repo.ReadAll()
                    group x by x.Nationality into g
@@ -72,7 +72,7 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
                    {
                         Nationality = g.Key,
                         Count = g.Count()
-                   }).OrderByDescending(x => x.Count).Take(3);
+                   }).OrderByDescending(x => x.Count).Take(firstX);
         }
 
         public class DriversPerNationality
@@ -99,6 +99,24 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
             public string TeamName { get; set; }
             public string DriverName { get; set; }
             public int Number { get; set; }
+        }
+        #endregion
+        #region Calculate the average driver's age in the same engine based teams.
+        public IEnumerable<SameEngine> GetAvgDriversAgeByTheSameEngineBasedTeams()
+        {
+            return from x in this.repo.ReadAll()
+                   group x by x.Team.EngineManufacturer.Name into g
+                   select new SameEngine()
+                   {
+                       Engine = g.Key,
+                       Avg = g.Average(x => (DateTime.Now.Year - x.Born.Year))
+                   };
+        }
+
+        public class SameEngine
+        {
+            public string Engine { get; set; }
+            public double Avg { get; set; }
         }
         #endregion
     }
