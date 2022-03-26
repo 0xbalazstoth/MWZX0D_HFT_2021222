@@ -21,7 +21,7 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
 
         public void Create(Driver item)
         {
-            if ((DateTime.Now.Year - item.Born.Year) > 17)
+            if ((DateTime.Now.Year - item.Born.Year) < 17)
             {
                 throw new DriverIsTooYoungException()
                 {
@@ -79,6 +79,24 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
         {
             public string Nationality { get; set; }
             public int Count { get; set; }
+
+            public override bool Equals(object obj)
+            {
+                DriversPerNationality b = obj as DriversPerNationality;
+                if (b == null)
+                {
+                    return false;
+                }
+                else
+                { 
+                    return this.Nationality == b.Nationality && this.Count == b.Count;
+                }
+            }
+
+            public override int GetHashCode()
+            {
+                return HashCode.Combine(this.Nationality, this.Count);
+            }
         }
         #endregion
         #region Given two teams, is there any driver who's number is between specific range, who is it and what's his number?
