@@ -117,6 +117,24 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
             public string TeamName { get; set; }
             public string DriverName { get; set; }
             public int Number { get; set; }
+
+            public override bool Equals(object obj)
+            {
+                GivenNumber b = obj as GivenNumber;
+                if (b == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return this.TeamName == b.TeamName && this.DriverName == b.DriverName && this.Number == b.Number;
+                }
+            }
+
+            public override int GetHashCode()
+            {
+                return HashCode.Combine(this.TeamName, this.DriverName, this.Number);
+            }
         }
         #endregion
         #region Calculate the average driver's age in the same engine based teams.
