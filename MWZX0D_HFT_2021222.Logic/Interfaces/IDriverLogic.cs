@@ -13,6 +13,6 @@ namespace MWZX0D_HFT_2021222.Logic.Interfaces
         IQueryable<Driver> RealAll();
         void Update(Driver item);
         IEnumerable<DriverLogic.DriversPerNationality> GetDriversPerNationality();
-        IEnumerable<DriverLogic.GivenNumber> GetDriversWhosNumberIsBetweenSpecificRange(string aTeam, string bTeam, int fromNumber, int toNumber)
+        IEnumerable<DriverLogic.GivenNumber> GetDriversWhosNumberIsBetweenSpecificRange(string aTeam, string bTeam, int fromNumber, int toNumber);
     }
 }
