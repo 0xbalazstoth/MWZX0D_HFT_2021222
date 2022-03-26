@@ -63,25 +63,6 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
         }
 
         // Non-crud methods
-        public IEnumerable<OlderThan20AndHondaEngine> DriversOlderThan20AndTheyAreInHondaEngineBasedTeam()
-        {
-            return from x in this.repo.ReadAll()
-                   where (DateTime.Now.Year - x.Born.Year) > 24 && x.Team.EngineManufacturer.Name == "Honda"
-                   select new OlderThan20AndHondaEngine
-                   { 
-                        DriverName = x.Name,
-                        TeamName = x.Team.Name,
-                        Age = (DateTime.Now.Year - x.Born.Year)
-                   };
-        }
-
-        public class OlderThan20AndHondaEngine
-        {
-            public string DriverName;
-            public string TeamName;
-            public int Age;
-        }
-
         #region How many drivers are included in one nationality, then sort in descending order and select only the first 3 nationalities.
         public IEnumerable<DriversPerNationality> GetDriversPerNationality()
         {
@@ -98,6 +79,26 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
         {
             public string Nationality { get; set; }
             public int Count { get; set; }
+        }
+        #endregion
+        #region Given two teams, is there any driver who's number is between specific range, who is it and what's his number?
+        public IEnumerable<GivenNumber> GetDriversWhosNumberIsBetweenSpecificRange(string aTeam, string bTeam, int fromNumber, int toNumber)
+        {
+            return from x in this.repo.ReadAll()
+                   where (x.Team.Name.ToUpper() == aTeam.ToUpper() || x.Team.Name.ToUpper() == bTeam.ToUpper()) && (x.Number >= fromNumber && x.Number <= toNumber)
+                   select new GivenNumber()
+                   { 
+                       TeamName = x.Team.Name,
+                       DriverName = x.Name,
+                       Number = x.Number
+                   };
+        }
+
+        public class GivenNumber
+        {
+            public string TeamName { get; set; }
+            public string DriverName { get; set; }
+            public int Number { get; set; }
         }
         #endregion
     }

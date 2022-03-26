@@ -25,6 +25,7 @@ namespace MWZX0D_HFT_2021222.Client
             //var q1 = driverLogic.DriversOlderThan20AndTheyAreInHondaEngineBasedTeam();
             var q1 = driverLogic.GetDriversPerNationality();
             var q2 = teamLogic.GetEngineManufacturerByPrincipalNameIfContainsSpecificLetter('a');
+            var q3 = driverLogic.GetDriversWhosNumberIsBetweenSpecificRange("ferrari", "mercedes", 5, 45);
             ;
         }
     }

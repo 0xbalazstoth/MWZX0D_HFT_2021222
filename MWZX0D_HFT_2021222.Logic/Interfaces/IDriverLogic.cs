@@ -12,7 +12,7 @@ namespace MWZX0D_HFT_2021222.Logic.Interfaces
         Driver Read(int id);
         IQueryable<Driver> RealAll();
         void Update(Driver item);
-        IEnumerable<DriverLogic.OlderThan20AndHondaEngine> DriversOlderThan20AndTheyAreInHondaEngineBasedTeam();
         IEnumerable<DriverLogic.DriversPerNationality> GetDriversPerNationality();
+        IEnumerable<DriverLogic.GivenNumber> GetDriversWhosNumberIsBetweenSpecificRange(string aTeam, string bTeam, int fromNumber, int toNumber)
     }
 }
