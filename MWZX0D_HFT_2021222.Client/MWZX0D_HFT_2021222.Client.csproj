@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MWZX0D_HFT_2021222.Logic\MWZX0D_HFT_2021222.Logic.csproj" />
     <ProjectReference Include="..\MWZX0D_HFT_2021222.Models\MWZX0D_HFT_2021222.Models.csproj" />
     <ProjectReference Include="..\MWZX0D_HFT_2021222.Repository\MWZX0D_HFT_2021222.Repository.csproj" />
   </ItemGroup>
