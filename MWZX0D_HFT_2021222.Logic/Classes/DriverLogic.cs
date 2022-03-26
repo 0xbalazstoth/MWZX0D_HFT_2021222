@@ -153,6 +153,24 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
         {
             public string Engine { get; set; }
             public double Avg { get; set; }
+
+            public override bool Equals(object obj)
+            {
+                SameEngine b = obj as SameEngine;
+                if (b == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return this.Engine == b.Engine && this.Avg == b.Avg;
+                }
+            }
+
+            public override int GetHashCode()
+            {
+                return HashCode.Combine(this.Engine, this.Avg);
+            }
         }
         #endregion
         #region What is the sum of the number of drivers per headquarter, which is at least the given value.
@@ -171,6 +189,24 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
         {
             public string HeadQuarter { get; set; }
             public int Sum { get; set; }
+
+            public override bool Equals(object obj)
+            {
+                SumNumberEngine b = obj as SumNumberEngine;
+                if (b == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return this.HeadQuarter == b.HeadQuarter && this.Sum == b.Sum;
+                }
+            }
+
+            public override int GetHashCode()
+            {
+                return HashCode.Combine(this.HeadQuarter, this.Sum);
+            }
         }
         #endregion
     }
