@@ -36,7 +36,6 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
         public void Delete(int id)
         {
             this.repo.Delete(id);
-            ;
         }
 
         public Driver Read(int id)

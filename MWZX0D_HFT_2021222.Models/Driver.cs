@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace MWZX0D_HFT_2021222.Models
 {
@@ -26,6 +27,7 @@ namespace MWZX0D_HFT_2021222.Models
         [ForeignKey(nameof(Team))]
         public int TeamId { get; set; } // Team, Fk
 
+        [JsonIgnore]
         [NotMapped]
         public virtual Team Team { get; set; }
 

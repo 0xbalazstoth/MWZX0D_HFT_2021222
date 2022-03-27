@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MWZX0D_HFT_2021222.Logic.Interfaces;
+using MWZX0D_HFT_2021222.Models;
 using System.Collections.Generic;
 
 namespace MWZX0D_HFT_2021222.Endpoint.Controllers
@@ -7,36 +9,41 @@ namespace MWZX0D_HFT_2021222.Endpoint.Controllers
     [ApiController]
     public class EngineManufacturerController : ControllerBase
     {
-        // GET: api/<EngineManufacturerController>
+        IEngineManufacturerLogic logic;
+
+        public EngineManufacturerController(IEngineManufacturerLogic logic)
+        {
+            this.logic = logic;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<EngineManufacturer> ReadAll()
         {
-            return new string[] { "value1", "value2" };
+            return this.logic.ReadAll();
         }
 
-        // GET api/<EngineManufacturerController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public EngineManufacturer Read(int id)
         {
-            return "value";
+            return this.logic.Read(id);
         }
 
-        // POST api/<EngineManufacturerController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Create([FromBody] EngineManufacturer value)
         {
+            this.logic.Create(value);
         }
 
-        // PUT api/<EngineManufacturerController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Update([FromBody] EngineManufacturer value)
         {
+            this.logic.Update(value);
         }
 
-        // DELETE api/<EngineManufacturerController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            this.logic.Delete(id);
         }
     }
 }

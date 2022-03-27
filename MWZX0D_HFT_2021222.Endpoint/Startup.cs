@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MWZX0D_HFT_2021222.Logic.Classes;
+using MWZX0D_HFT_2021222.Logic.Exceptions;
 using MWZX0D_HFT_2021222.Logic.Interfaces;
 using MWZX0D_HFT_2021222.Models;
 using MWZX0D_HFT_2021222.Repository.Database;
@@ -30,6 +31,7 @@ namespace MWZX0D_HFT_2021222.Endpoint
 
         public IConfiguration Configuration { get; }
 
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<FormulaDbContext>();
@@ -64,18 +66,27 @@ namespace MWZX0D_HFT_2021222.Endpoint
                 var exception = context.Features
                     .Get<IExceptionHandlerPathFeature>()
                     .Error;
-                var response = new { Msg = exception.Message };
-                await context.Response.WriteAsJsonAsync(response);
+
+                if (exception is BaseException) // Custom exceptions
+                {
+                    var baseException = exception as BaseException;
+                    var response = new { Error = baseException.Msg };
+                    await context.Response.WriteAsJsonAsync(response);
+                }
+                else
+                {
+                    var response = new { Msg = exception.Message };
+                    await context.Response.WriteAsJsonAsync(response);
+                }
             }));
 
             app.UseRouting();
 
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }

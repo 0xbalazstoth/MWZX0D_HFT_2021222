@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace MWZX0D_HFT_2021222.Models
 {
@@ -14,6 +15,7 @@ namespace MWZX0D_HFT_2021222.Models
         [Required]
         public string Name { get; set; }
 
+        [JsonIgnore]
         [NotMapped]
         public virtual ICollection<Team> Teams { get; set; }
 
