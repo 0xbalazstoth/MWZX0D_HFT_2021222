@@ -10,7 +10,7 @@ namespace MWZX0D_HFT_2021222.Logic.Interfaces
         void Create(Driver item);
         void Delete(int id);
         Driver Read(int id);
-        IQueryable<Driver> RealAll();
+        IQueryable<Driver> ReadAll();
         void Update(Driver item);
         IEnumerable<DriverLogic.DriversPerNationality> GetDriversPerNationality(int firstX);
         IEnumerable<DriverLogic.GivenNumber> GetDriversWhosNumberIsBetweenSpecificRange(string aTeam, string bTeam, int fromNumber, int toNumber);

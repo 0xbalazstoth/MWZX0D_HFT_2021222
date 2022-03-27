@@ -10,7 +10,7 @@ namespace MWZX0D_HFT_2021222.Logic.Interfaces
         void Create(EngineManufacturer item);
         void Delete(int id);
         EngineManufacturer Read(int id);
-        IQueryable<EngineManufacturer> RealAll();
+        IQueryable<EngineManufacturer> ReadAll();
         void Update(EngineManufacturer item);
     }
 }

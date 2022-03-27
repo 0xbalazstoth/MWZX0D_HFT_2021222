@@ -62,7 +62,7 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
             return driver;
         }
 
-        public IQueryable<Driver> RealAll()
+        public IQueryable<Driver> ReadAll()
         {
             return this.repo.ReadAll();
         }

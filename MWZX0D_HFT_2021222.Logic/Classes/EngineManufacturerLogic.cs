@@ -51,7 +51,7 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
             return em;
         }
 
-        public IQueryable<EngineManufacturer> RealAll()
+        public IQueryable<EngineManufacturer> ReadAll()
         {
             return this.repo.ReadAll();
         }

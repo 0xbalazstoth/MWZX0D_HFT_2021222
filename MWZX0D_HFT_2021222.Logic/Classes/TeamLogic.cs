@@ -22,7 +22,7 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
 
         public void Create(Team item)
         {
-            if (item.Name != "") {
+            if (item.Name == "") {
                 throw new NameEmptyException()
                 {
                     Msg = "Team's name cannot be empty!",
@@ -51,7 +51,7 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
             return team;
         }
 
-        public IQueryable<Team> RealAll()
+        public IQueryable<Team> ReadAll()
         {
             return this.repo.ReadAll();
         }

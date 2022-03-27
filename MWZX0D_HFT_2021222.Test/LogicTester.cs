@@ -341,6 +341,27 @@ namespace MWZX0D_HFT_2021222.Test
 
         #region Crud method tests
         [Test]
+        public void GetAllDriversTest()
+        {
+            var actual = driverLogic.ReadAll();
+            Assert.That(mockDriverRepo.Object.ReadAll().Count, Is.EqualTo(12));
+        }
+
+        [Test]
+        public void GetAllTeamsTest()
+        { 
+            var actual = teamLogic.ReadAll();
+            Assert.That(mockTeamRepo.Object.ReadAll().Count, Is.EqualTo(10));
+        }
+
+        [Test]
+        public void GetAllEngineManufacturersTest()
+        { 
+            var actual = engineManufacturerLogic.ReadAll();
+            Assert.That(mockEngineManufacturerRepo.Object.ReadAll().Count, Is.EqualTo(4));
+        }
+
+        [Test]
         public void CreateDriverTestWithCorrectAge()
         {
             var driver = new Driver()
@@ -366,6 +387,56 @@ namespace MWZX0D_HFT_2021222.Test
             // ACT & ASSERT
             Assert.Throws<DriverIsTooYoungException>(() => driverLogic.Create(driver));
             mockDriverRepo.Verify(x => x.Create(driver), Times.Never);
+        }
+
+        [Test]
+        public void CreateTeamTestWithCorrectName()
+        {
+            var team = new Team()
+            {
+                Name = "BMW"
+            };
+
+            teamLogic.Create(team);
+
+            mockTeamRepo.Verify(x => x.Create(team), Times.Once);
+        }
+
+        [Test]
+        public void CreateTeamTestNameEmptyException()
+        {
+            var team = new Team()
+            { 
+                Name = ""
+            };
+
+            Assert.Throws<NameEmptyException>(() => teamLogic.Create(team));
+            mockTeamRepo.Verify(x => x.Create(team), Times.Never);
+        }
+
+        [Test]
+        public void CreateEngineManufacturerTestWithCorrectNameLength()
+        {
+            var engineManufacturer = new EngineManufacturer()
+            { 
+                Name = "Bugatti"
+            };
+
+            engineManufacturerLogic.Create(engineManufacturer);
+
+            mockEngineManufacturerRepo.Verify(x => x.Create(engineManufacturer), Times.Once);
+        }
+
+        [Test]
+        public void CreateEngineManufacturerTestEngineManufacturerNameIsTooShortException()
+        {
+            var engineManufacturer = new EngineManufacturer()
+            { 
+                Name = "BA"
+            };
+
+            Assert.Throws<EngineManufacturerNameIsTooShortException>(() => engineManufacturerLogic.Create(engineManufacturer));
+            mockEngineManufacturerRepo.Verify(x => x.Create(engineManufacturer), Times.Never);
         }
 
         #endregion
