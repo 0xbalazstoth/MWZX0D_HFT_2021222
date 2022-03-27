@@ -328,7 +328,7 @@ namespace MWZX0D_HFT_2021222.Test
 
             #endregion
             #region Logics
-            driverLogic = new DriverLogic(mockDriverRepo.Object, mockTeamRepo.Object, mockEngineManufacturerRepo.Object);
+            driverLogic = new DriverLogic(mockDriverRepo.Object);
             teamLogic = new TeamLogic(mockTeamRepo.Object);
             engineManufacturerLogic = new EngineManufacturerLogic(mockEngineManufacturerRepo.Object);
             #endregion
@@ -341,21 +341,21 @@ namespace MWZX0D_HFT_2021222.Test
 
         #region Crud method tests
         [Test]
-        public void GetAllDriversTest()
+        public void ReadAllDriversTest()
         {
             var actual = driverLogic.ReadAll();
             Assert.That(mockDriverRepo.Object.ReadAll().Count, Is.EqualTo(12));
         }
 
         [Test]
-        public void GetAllTeamsTest()
+        public void ReadAllTeamsTest()
         { 
             var actual = teamLogic.ReadAll();
             Assert.That(mockTeamRepo.Object.ReadAll().Count, Is.EqualTo(10));
         }
 
         [Test]
-        public void GetAllEngineManufacturersTest()
+        public void ReadAllEngineManufacturersTest()
         { 
             var actual = engineManufacturerLogic.ReadAll();
             Assert.That(mockEngineManufacturerRepo.Object.ReadAll().Count, Is.EqualTo(4));

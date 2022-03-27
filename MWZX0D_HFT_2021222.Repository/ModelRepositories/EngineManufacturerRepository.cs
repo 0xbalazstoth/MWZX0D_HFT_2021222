@@ -12,7 +12,7 @@ namespace MWZX0D_HFT_2021222.Repository.ModelRepositories
         public EngineManufacturerRepository(FormulaDbContext ctx) : base(ctx)
         {
         }
-        
+
         // READ
         public override EngineManufacturer Read(int id)
         {

@@ -11,22 +11,12 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
     public class DriverLogic : IDriverLogic
     {
         IRepository<Driver> repo;
-        IRepository<Team> teamRepo;
-        IRepository<EngineManufacturer> engineManufacturerRepo;
 
         // Logic can only receive Repository as a dependency via the interface as a constructor parameter
         // (Dependency Injection)!
         public DriverLogic(IRepository<Driver> repo)
         {
             this.repo = repo;
-        }
-
-        public DriverLogic(IRepository<Driver> repo, IRepository<Team> teamRepo, IRepository<EngineManufacturer> engineManufacturerRepo)
-        {
-            this.repo = repo;
-            this.teamRepo = teamRepo;
-            this.engineManufacturerRepo = engineManufacturerRepo;
-
         }
 
         public void Create(Driver item)
@@ -73,39 +63,39 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
         }
 
         // Non-crud methods
-        #region How many drivers are included in one nationality, then sort in descending order and select only the first x nationalities.
-        public IEnumerable<DriversPerNationality> GetDriversPerNationality(int firstX)
+        #region How many drivers are included in one engine manufacturer, then sort in descending order by count.
+        public IEnumerable<DriversPerEngineManufacturer> GetDriversPerEngineManufacturer()
         {
             return (from x in this.repo.ReadAll()
-                    group x by x.Nationality into g
-                    select new DriversPerNationality()
-                    {
-                        Nationality = g.Key,
-                        Count = g.Count()
-                    }).OrderByDescending(x => x.Count).Take(firstX);
+                   group x by x.Team.EngineManufacturer.Name into g
+                   select new DriversPerEngineManufacturer()
+                   { 
+                        EngineManufacturer = g.Key,
+                        Count = g.Count(),
+                   }).OrderByDescending(x => x.Count);
         }
 
-        public class DriversPerNationality
+        public class DriversPerEngineManufacturer
         {
-            public string Nationality { get; set; }
+            public string EngineManufacturer { get; set; }
             public int Count { get; set; }
 
             public override bool Equals(object obj)
             {
-                DriversPerNationality b = obj as DriversPerNationality;
+                DriversPerEngineManufacturer b = obj as DriversPerEngineManufacturer;
                 if (b == null)
                 {
                     return false;
                 }
                 else
                 { 
-                    return this.Nationality == b.Nationality && this.Count == b.Count;
+                    return this.EngineManufacturer == b.EngineManufacturer && this.Count == b.Count;
                 }
             }
 
             public override int GetHashCode()
             {
-                return HashCode.Combine(this.Nationality, this.Count);
+                return HashCode.Combine(this.EngineManufacturer, this.Count);
             }
         }
 

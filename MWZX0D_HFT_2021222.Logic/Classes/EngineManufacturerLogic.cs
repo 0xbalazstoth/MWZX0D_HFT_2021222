@@ -60,7 +60,5 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
         {
             this.repo.Update(item);
         }
-
-        // Non-crud methods
     }
 }
