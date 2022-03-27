@@ -23,8 +23,10 @@ namespace MWZX0D_HFT_2021222.Models
         [ForeignKey(nameof(EngineManufacturer))]
         public int EngineManufacturerId { get; set; } // EngineManufacturer, Fk
 
+        [NotMapped]
         public virtual ICollection<Driver> Drivers { get; set; }
 
+        [NotMapped]
         public virtual EngineManufacturer EngineManufacturer { get; set; }
 
         public Team()

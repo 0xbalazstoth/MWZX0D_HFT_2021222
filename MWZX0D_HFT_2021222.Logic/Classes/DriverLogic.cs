@@ -11,12 +11,22 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
     public class DriverLogic : IDriverLogic
     {
         IRepository<Driver> repo;
+        IRepository<Team> teamRepo;
+        IRepository<EngineManufacturer> engineManufacturerRepo;
 
         // Logic can only receive Repository as a dependency via the interface as a constructor parameter
         // (Dependency Injection)!
         public DriverLogic(IRepository<Driver> repo)
         {
             this.repo = repo;
+        }
+
+        public DriverLogic(IRepository<Driver> repo, IRepository<Team> teamRepo, IRepository<EngineManufacturer> engineManufacturerRepo)
+        {
+            this.repo = repo;
+            this.teamRepo = teamRepo;
+            this.engineManufacturerRepo = engineManufacturerRepo;
+
         }
 
         public void Create(Driver item)
@@ -98,11 +108,12 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
                 return HashCode.Combine(this.Nationality, this.Count);
             }
         }
+
         #endregion
         #region Given two teams, is there any driver who's number is between specific range, who is it and what's his number?
         public IEnumerable<GivenNumber> GetDriversWhosNumberIsBetweenSpecificRange(string aTeam, string bTeam, int fromNumber, int toNumber)
         {
-            return from x in this.repo.ReadAll()
+            var res = from x in repo.ReadAll()
                    where (x.Team.Name.ToUpper() == aTeam.ToUpper() || x.Team.Name.ToUpper() == bTeam.ToUpper()) && (x.Number >= fromNumber && x.Number <= toNumber)
                    select new GivenNumber()
                    {
@@ -110,6 +121,8 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
                        DriverName = x.Name,
                        Number = x.Number
                    };
+            ;
+            return res.AsEnumerable();
         }
 
         public class GivenNumber
@@ -127,7 +140,7 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
                 }
                 else
                 {
-                    return this.TeamName == b.TeamName && this.DriverName == b.DriverName && this.Number == b.Number;
+                    return TeamName == b.TeamName && DriverName == b.DriverName && Number == b.Number;
                 }
             }
 
@@ -140,7 +153,7 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
         #region Calculate the average driver's age in the same engine based teams.
         public IEnumerable<SameEngine> GetAvgDriversAgeByTheSameEngineBasedTeams()
         {
-            return from x in this.repo.ReadAll()
+            return from x in repo.ReadAll()
                    group x by x.Team.EngineManufacturer.Name into g
                    select new SameEngine()
                    {

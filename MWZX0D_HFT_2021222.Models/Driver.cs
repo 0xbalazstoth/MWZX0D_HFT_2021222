@@ -26,6 +26,7 @@ namespace MWZX0D_HFT_2021222.Models
         [ForeignKey(nameof(Team))]
         public int TeamId { get; set; } // Team, Fk
 
+        [NotMapped]
         public virtual Team Team { get; set; }
 
         public Driver()

@@ -14,6 +14,7 @@ namespace MWZX0D_HFT_2021222.Models
         [Required]
         public string Name { get; set; }
 
+        [NotMapped]
         public virtual ICollection<Team> Teams { get; set; }
 
         public EngineManufacturer()
