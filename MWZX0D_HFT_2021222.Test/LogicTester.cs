@@ -560,6 +560,38 @@ namespace MWZX0D_HFT_2021222.Test
 
             Assert.That(actual, Is.EqualTo(expected));
         }
+
+        [Test]
+        // How many drivers are included in one engine manufacturer, then sort in descending order by count.
+        public void GetDriversPerEngineManufacturerTest()
+        {
+            var actual = driverLogic.GetDriversPerEngineManufacturer();
+            var expected = new List<DriversPerEngineManufacturer>()
+            { 
+                new DriversPerEngineManufacturer()
+                { 
+                    Count = 5,
+                    EngineManufacturer = "Mercedes"
+                },
+                new DriversPerEngineManufacturer()
+                {
+                    Count = 3,
+                    EngineManufacturer = "Ferrari"
+                },
+                new DriversPerEngineManufacturer()
+                {
+                    Count = 2,
+                    EngineManufacturer = "Honda"
+                },
+                new DriversPerEngineManufacturer()
+                {
+                    Count = 2,
+                    EngineManufacturer = "Renault"
+                },
+            };
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
         #endregion
     }
 }
