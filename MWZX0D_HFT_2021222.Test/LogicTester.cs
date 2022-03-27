@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using static MWZX0D_HFT_2021222.Logic.Classes.DriverLogic;
+using static MWZX0D_HFT_2021222.Logic.Classes.TeamLogic;
 
 namespace MWZX0D_HFT_2021222.Test
 {
@@ -338,6 +339,7 @@ namespace MWZX0D_HFT_2021222.Test
             #endregion
         }
 
+        #region Crud method tests
         [Test]
         public void CreateDriverTestWithCorrectAge()
         {
@@ -354,7 +356,7 @@ namespace MWZX0D_HFT_2021222.Test
         }
 
         [Test]
-        public void CreateDriverTestWithIncorrectAge()
+        public void CreateDriverTestDriverIsTooYoungException()
         {
             var driver = new Driver()
             {
@@ -366,7 +368,10 @@ namespace MWZX0D_HFT_2021222.Test
             mockDriverRepo.Verify(x => x.Create(driver), Times.Never);
         }
 
+        #endregion
+        #region Non-crud method tests
         [Test]
+        // Given two teams, is there any driver who's number is between specific range, who is it and what's his number?
         public void GetDriversWhosNumberIsBetweenSpecificRangeTest()
         {
             var actual = driverLogic.GetDriversWhosNumberIsBetweenSpecificRange("ferrari", "mercedes", 5, 49).ToList();
@@ -390,6 +395,7 @@ namespace MWZX0D_HFT_2021222.Test
         }
 
         [Test]
+        // Calculate the average driver's age in the same engine based teams.
         public void GetAvgDriversAgeByTheSameEngineBasedTeamsTest()
         {
             var actual = driverLogic.GetAvgDriversAgeByTheSameEngineBasedTeams();
@@ -419,5 +425,70 @@ namespace MWZX0D_HFT_2021222.Test
 
             Assert.That(actual, Is.EqualTo(expected));
         }
+
+        [Test]
+        // What is the sum of the number of drivers per headquarter, which is at least the given value.
+        public void GetSumPerHeadquarterAtLeastGivenValueTest()
+        {
+            var actual = driverLogic.GetSumPerHeadquarterAtLeastGivenValue(10);
+            var expected = new List<SumNumberEngine>()
+            { 
+                new SumNumberEngine()
+                { 
+                    HeadQuarter = "Germany",
+                    Sum = 19,
+                },
+                new SumNumberEngine()
+                {
+                    HeadQuarter = "Italy",
+                    Sum = 151,
+                },
+                new SumNumberEngine()
+                {
+                    HeadQuarter = "United Kingdom",
+                    Sum = 89,
+                },
+                new SumNumberEngine()
+                {
+                    HeadQuarter = "France",
+                    Sum = 20,
+                },
+                new SumNumberEngine()
+                {
+                    HeadQuarter = "Switzerland",
+                    Sum = 88,
+                },
+                new SumNumberEngine()
+                {
+                    HeadQuarter = "United States",
+                    Sum = 51,
+                },
+            };
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        // If the team's principal's name contains specific letter, which engine they are using and what his/her name?
+        public void GetEngineManufacturerByPrincipalNameIfContainsSpecificLetterTest()
+        {
+            var actual = teamLogic.GetEngineManufacturerByPrincipalNameIfContainsSpecificLetter('z');
+            var expected = new List<PrincipalLetter>()
+            { 
+                new PrincipalLetter()
+                { 
+                    Engine = "Renault",
+                    Name = "Otmar Szafnauer"
+                },
+                new PrincipalLetter()
+                {
+                    Engine = "Honda",
+                    Name = "Franz Tost"
+                },
+            };
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+        #endregion
     }
 }
