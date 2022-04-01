@@ -1,1 +1,1 @@
-[![Dokumentáció](https://img.shields.io/badge/Dokument%C3%A1ci%C3%B3-https%3A%2F%2Fmwzx0d-ff-hft--2021222.netlify.app%2F%23%2F-lightgrey?style=for-the-badge&logo=appveyor)](https://mwzx0d-ff-hft-2021222.netlify.app/#/)
+[![Dokumentáció](https://img.shields.io/badge/Dokument%C3%A1ci%C3%B3-https%3A%2F%2Fmwzx0d--ff--hft--2021222.netlify.app%2F%23%2F-blue?style=for-the-badge&logo=appveyor)](https://mwzx0d-ff-hft-2021222.netlify.app/#/)
