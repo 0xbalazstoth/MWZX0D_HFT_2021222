@@ -34,7 +34,14 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
 
         public void Delete(int id)
         {
-            this.repo.Delete(id);
+            try
+            {
+                this.repo.Delete(id);
+            }
+            catch (ArgumentNullException)
+            {
+                throw new ArgumentNullException("Id was not found.");
+            }
         }
 
         public Team Read(int id)
@@ -58,7 +65,10 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
 
         public void Update(Team item)
         {
-            this.repo.Update(item);
+            if (Read(item.TeamId) != null)
+            {
+                this.repo.Update(item);
+            }
         }
 
         // Non-crud methods

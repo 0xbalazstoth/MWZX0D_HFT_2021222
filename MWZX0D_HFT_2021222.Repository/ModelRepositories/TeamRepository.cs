@@ -25,7 +25,7 @@ namespace MWZX0D_HFT_2021222.Repository.ModelRepositories
             var old = Read(item.TeamId);
 
             // Reflection
-            foreach (var prop in old.GetType().GetProperties())
+            foreach (var prop in item.GetType().GetProperties())
             {
                 prop.SetValue(old, prop.GetValue(item));
             }
