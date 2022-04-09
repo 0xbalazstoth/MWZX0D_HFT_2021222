@@ -85,30 +85,6 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
                    }).OrderByDescending(x => x.Count);
         }
 
-        public class DriversPerEngineManufacturer
-        {
-            public string EngineManufacturer { get; set; }
-            public int Count { get; set; }
-
-            public override bool Equals(object obj)
-            {
-                DriversPerEngineManufacturer b = obj as DriversPerEngineManufacturer;
-                if (b == null)
-                {
-                    return false;
-                }
-                else
-                { 
-                    return this.EngineManufacturer == b.EngineManufacturer && this.Count == b.Count;
-                }
-            }
-
-            public override int GetHashCode()
-            {
-                return HashCode.Combine(this.EngineManufacturer, this.Count);
-            }
-        }
-
         #endregion
         #region Given two teams, is there any driver who's number is between specific range, who is it and what's his number?
         public IEnumerable<GivenNumber> GetDriversWhosNumberIsBetweenSpecificRange(string aTeam, string bTeam, int fromNumber, int toNumber)
@@ -124,31 +100,6 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
             ;
             return res.AsEnumerable();
         }
-
-        public class GivenNumber
-        {
-            public string TeamName { get; set; }
-            public string DriverName { get; set; }
-            public int Number { get; set; }
-
-            public override bool Equals(object obj)
-            {
-                GivenNumber b = obj as GivenNumber;
-                if (b == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    return TeamName == b.TeamName && DriverName == b.DriverName && Number == b.Number;
-                }
-            }
-
-            public override int GetHashCode()
-            {
-                return HashCode.Combine(this.TeamName, this.DriverName, this.Number);
-            }
-        }
         #endregion
         #region Calculate the average driver's age in the same engine based teams.
         public IEnumerable<SameEngine> GetAvgDriversAgeByTheSameEngineBasedTeams()
@@ -161,30 +112,6 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
                        Avg = g.Average(x => (DateTime.Now.Year - x.Born.Year))
                    };
         }
-
-        public class SameEngine
-        {
-            public string Engine { get; set; }
-            public double Avg { get; set; }
-
-            public override bool Equals(object obj)
-            {
-                SameEngine b = obj as SameEngine;
-                if (b == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    return this.Engine == b.Engine && this.Avg == b.Avg;
-                }
-            }
-
-            public override int GetHashCode()
-            {
-                return HashCode.Combine(this.Engine, this.Avg);
-            }
-        }
         #endregion
         #region What is the sum of the number of drivers per headquarter, which is at least the given value.
         public IEnumerable<SumNumberEngine> GetSumPerHeadquarterAtLeastGivenValue(int n)
@@ -196,30 +123,6 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
                        HeadQuarter = g.Key,
                        Sum = g.Sum(x => x.Number)
                    }).Where(x => x.Sum >= n);
-        }
-
-        public class SumNumberEngine
-        {
-            public string HeadQuarter { get; set; }
-            public int Sum { get; set; }
-
-            public override bool Equals(object obj)
-            {
-                SumNumberEngine b = obj as SumNumberEngine;
-                if (b == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    return this.HeadQuarter == b.HeadQuarter && this.Sum == b.Sum;
-                }
-            }
-
-            public override int GetHashCode()
-            {
-                return HashCode.Combine(this.HeadQuarter, this.Sum);
-            }
         }
         #endregion
     }

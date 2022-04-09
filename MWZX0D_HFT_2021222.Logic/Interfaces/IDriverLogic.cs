@@ -12,9 +12,9 @@ namespace MWZX0D_HFT_2021222.Logic.Interfaces
         Driver Read(int id);
         IQueryable<Driver> ReadAll();
         void Update(Driver item);
-        IEnumerable<DriverLogic.DriversPerEngineManufacturer> GetDriversPerEngineManufacturer();
-        IEnumerable<DriverLogic.GivenNumber> GetDriversWhosNumberIsBetweenSpecificRange(string aTeam, string bTeam, int fromNumber, int toNumber);
-        IEnumerable<DriverLogic.SameEngine> GetAvgDriversAgeByTheSameEngineBasedTeams();
-        IEnumerable<DriverLogic.SumNumberEngine> GetSumPerHeadquarterAtLeastGivenValue(int n);
+        IEnumerable<DriversPerEngineManufacturer> GetDriversPerEngineManufacturer();
+        IEnumerable<GivenNumber> GetDriversWhosNumberIsBetweenSpecificRange(string aTeam, string bTeam, int fromNumber, int toNumber);
+        IEnumerable<SameEngine> GetAvgDriversAgeByTheSameEngineBasedTeams();
+        IEnumerable<SumNumberEngine> GetSumPerHeadquarterAtLeastGivenValue(int n);
     }
 }

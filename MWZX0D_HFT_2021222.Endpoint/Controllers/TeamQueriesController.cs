@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MWZX0D_HFT_2021222.Logic.Classes;
 using MWZX0D_HFT_2021222.Logic.Interfaces;
+using MWZX0D_HFT_2021222.Models;
 using System.Collections.Generic;
 
 namespace MWZX0D_HFT_2021222.Endpoint.Controllers
@@ -17,7 +18,7 @@ namespace MWZX0D_HFT_2021222.Endpoint.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<TeamLogic.PrincipalLetter> GetEngineManufacturerByPrincipalNameIfContainsSpecificLetter(char letter)
+        public IEnumerable<PrincipalLetter> GetEngineManufacturerByPrincipalNameIfContainsSpecificLetter(char letter)
         {
             return this.teamLogic.GetEngineManufacturerByPrincipalNameIfContainsSpecificLetter(letter);
         }

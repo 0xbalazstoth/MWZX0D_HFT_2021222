@@ -13,6 +13,6 @@ namespace MWZX0D_HFT_2021222.Logic.Interfaces
         Team Read(int id);
         IQueryable<Team> ReadAll();
         void Update(Team item);
-        IEnumerable<TeamLogic.PrincipalLetter> GetEngineManufacturerByPrincipalNameIfContainsSpecificLetter(char letter);
+        IEnumerable<PrincipalLetter> GetEngineManufacturerByPrincipalNameIfContainsSpecificLetter(char letter);
     }
 }

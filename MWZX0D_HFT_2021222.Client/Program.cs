@@ -22,6 +22,15 @@ namespace MWZX0D_HFT_2021222.Client
         const string ENGINE_MANUFACTURER_ENTITY = "EngineManufacturer";
         const string ENGINE_MANUFACTURER_ENDPOINT = "/api/enginemanufacturer";
 
+        const string DRIVER_QUERIES = "DriverQueries";
+        const string DRIVER_QUERIES_GET_DRIVERS_PER_ENGINE_MANUFACTURER_ENDPOINT = "/api/" + DRIVER_QUERIES + "/getdriversperenginemanufacturer";
+        const string DRIVER_WHOS_NUMBER_IS_BETWEEN_SPECIFIC_RANGE_ENDPOINT = "/api/" + DRIVER_QUERIES + "/getdriverswhosnumberisbetweenspecificrange";
+        const string SUM_PER_HEADQUARTER_AT_LEAST_GIVEN_VALUE_ENDPOINT = "/api/" + DRIVER_QUERIES + "/getsumperheadquarteratleastgivenvalue";
+        const string AVG_DRIVERS_AGE_BY_THE_SAME_ENGINE_BASED_TEAMS_ENDPOINT = "/api/" + DRIVER_QUERIES + "/getavgdriversagebythesameenginebasedteams";
+
+        const string TEAM_QUERIES = "TeamQueries";
+        const string ENGINE_MANUFACTURER_BY_PRINCIPAL_NAME_IF_CONTAINS_SPECIFIC_LETTER_ENDPOINT = "/api/" + TEAM_QUERIES + "/getenginemanufacturerbyprincipalnameifcontainsspecificletter/";
+
         #region CRUD
         static void List(string entity)
         {
@@ -361,6 +370,87 @@ namespace MWZX0D_HFT_2021222.Client
         }
         #endregion
         #region Non-CRUD
+        static void GetDriversPerEngineManufacturer()
+        {
+            var drivers = rest.Get<DriversPerEngineManufacturer>(DRIVER_QUERIES_GET_DRIVERS_PER_ENGINE_MANUFACTURER_ENDPOINT);
+            foreach (var driver in drivers)
+            {
+                Console.WriteLine($"Engine Manufacturer: {driver.EngineManufacturer}: Count: {driver.Count}");
+            }
+
+            Console.Write("\n[PRESS ENTER TO GO BACK]");
+            Console.ReadLine();
+        }
+
+        static void GetDriversWhosNumberIsBetweenSpecificRange()
+        {
+            Console.Write("A team: ");
+            string aTeam = Console.ReadLine();
+
+            Console.Write("B team: ");
+            string bTeam = Console.ReadLine();
+
+            Console.Write("From: ");
+            int from = int.Parse(Console.ReadLine());
+
+            Console.Write("To: ");
+            int to = int.Parse(Console.ReadLine());
+
+            var drivers = rest.Get<GivenNumber>(DRIVER_WHOS_NUMBER_IS_BETWEEN_SPECIFIC_RANGE_ENDPOINT + $"?aTeam={aTeam}&bTeam={bTeam}&fromNumber={from}&toNumber={to}");
+
+            foreach (var driver in drivers)
+            {
+                Console.WriteLine($"Driver\'s name: {driver.DriverName}, Team\'s name: {driver.TeamName}, Number: {driver.Number}");
+            }
+
+            Console.Write("\n[PRESS ENTER TO GO BACK]");
+            Console.ReadLine();
+        }
+
+        static void GetSumPerHeadquarterAtLeastGivenValue()
+        {
+            Console.Write("At least: ");
+            int atLeast = int.Parse(Console.ReadLine());
+
+            var hqs = rest.Get<SumNumberEngine>(SUM_PER_HEADQUARTER_AT_LEAST_GIVEN_VALUE_ENDPOINT + $"?n={atLeast}");
+
+            foreach (var hq in hqs)
+            {
+                Console.WriteLine($"Headquarter: {hq.HeadQuarter}, Sum: {hq.Sum}");
+            }
+
+            Console.Write("\n[PRESS ENTER TO GO BACK]");
+            Console.ReadLine();
+        }
+
+        static void GetAvgDriversAgeByTheSameEngineBasedTeams()
+        {
+            var avgDrivers = rest.Get<SameEngine>(AVG_DRIVERS_AGE_BY_THE_SAME_ENGINE_BASED_TEAMS_ENDPOINT);
+
+            foreach (var item in avgDrivers)
+            {
+                Console.WriteLine($"Engine: {item.Engine}, Average: {item.Avg} year");
+            }
+
+            Console.Write("\n[PRESS ENTER TO GO BACK]");
+            Console.ReadLine();
+        }
+
+        static void GetEngineManufacturerByPrincipalNameIfContainsSpecificLetter()
+        {
+            Console.Write("Letter: ");
+            char letter = Convert.ToChar(Console.ReadLine());
+
+            var ems = rest.Get<PrincipalLetter>(ENGINE_MANUFACTURER_BY_PRINCIPAL_NAME_IF_CONTAINS_SPECIFIC_LETTER_ENDPOINT + $"?letter={letter}");
+
+            foreach (var em in ems)
+            {
+                Console.WriteLine($"Name: {em.Name}, Engine: {em.Engine}");
+            }
+
+            Console.Write("\n[PRESS ENTER TO GO BACK]");
+            Console.ReadLine();
+        }
         #endregion
 
         static void Main(string[] args)
@@ -392,6 +482,11 @@ namespace MWZX0D_HFT_2021222.Client
                 .Add("Back", ConsoleMenu.Close);
 
             var queriesSubMenu = new ConsoleMenu(args, level: 1)
+                .Add("Get Drivers per engine manufacturer", () => GetDriversPerEngineManufacturer())
+                .Add("Get drivers who\'s number is between specific range", () => GetDriversWhosNumberIsBetweenSpecificRange())
+                .Add("Get sum per headquarter at least given value", () => GetSumPerHeadquarterAtLeastGivenValue())
+                .Add("Get average drivers age by the same engine based teams", () => GetAvgDriversAgeByTheSameEngineBasedTeams())
+                .Add("Get engine manufacturer by principal name if contains specific letter", () => GetEngineManufacturerByPrincipalNameIfContainsSpecificLetter())
                 .Add("Back", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)
