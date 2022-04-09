@@ -27,7 +27,11 @@ namespace MWZX0D_HFT_2021222.Repository.ModelRepositories
             // Reflection
             foreach (var prop in item.GetType().GetProperties())
             {
-                prop.SetValue(old, prop.GetValue(item));
+                if (prop.GetAccessors().FirstOrDefault(x => x.IsVirtual) == null)
+                {
+                    prop.SetValue(old, prop.GetValue(item));
+                }
+                //prop.SetValue(old, prop.GetValue(item));
             }
 
             ctx.SaveChanges();
