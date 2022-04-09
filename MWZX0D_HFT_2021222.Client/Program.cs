@@ -373,6 +373,7 @@ namespace MWZX0D_HFT_2021222.Client
         static void GetDriversPerEngineManufacturer()
         {
             var drivers = rest.Get<DriversPerEngineManufacturer>(DRIVER_QUERIES_GET_DRIVERS_PER_ENGINE_MANUFACTURER_ENDPOINT);
+            Console.WriteLine("\n[?] - How many drivers are included in one engine manufacturer, then sort in descending order by count.");
             foreach (var driver in drivers)
             {
                 Console.WriteLine($"Engine Manufacturer: {driver.EngineManufacturer}: Count: {driver.Count}");
@@ -398,6 +399,7 @@ namespace MWZX0D_HFT_2021222.Client
 
             var drivers = rest.Get<GivenNumber>(DRIVER_WHOS_NUMBER_IS_BETWEEN_SPECIFIC_RANGE_ENDPOINT + $"?aTeam={aTeam}&bTeam={bTeam}&fromNumber={from}&toNumber={to}");
 
+            Console.WriteLine("\n[?] - Given two teams, is there any driver who's number is between specific range, who is it and what's his number?");
             foreach (var driver in drivers)
             {
                 Console.WriteLine($"Driver\'s name: {driver.DriverName}, Team\'s name: {driver.TeamName}, Number: {driver.Number}");
@@ -414,6 +416,7 @@ namespace MWZX0D_HFT_2021222.Client
 
             var hqs = rest.Get<SumNumberEngine>(SUM_PER_HEADQUARTER_AT_LEAST_GIVEN_VALUE_ENDPOINT + $"?n={atLeast}");
 
+            Console.WriteLine("\n[?] - What is the sum of the number of drivers per headquarter, which is at least the given value.");
             foreach (var hq in hqs)
             {
                 Console.WriteLine($"Headquarter: {hq.HeadQuarter}, Sum: {hq.Sum}");
@@ -427,6 +430,7 @@ namespace MWZX0D_HFT_2021222.Client
         {
             var avgDrivers = rest.Get<SameEngine>(AVG_DRIVERS_AGE_BY_THE_SAME_ENGINE_BASED_TEAMS_ENDPOINT);
 
+            Console.WriteLine("\n[?] - Calculate the average driver's age in the same engine based teams.");
             foreach (var item in avgDrivers)
             {
                 Console.WriteLine($"Engine: {item.Engine}, Average: {item.Avg} year");
@@ -443,6 +447,7 @@ namespace MWZX0D_HFT_2021222.Client
 
             var ems = rest.Get<PrincipalLetter>(ENGINE_MANUFACTURER_BY_PRINCIPAL_NAME_IF_CONTAINS_SPECIFIC_LETTER_ENDPOINT + $"?letter={letter}");
 
+            Console.WriteLine("\n[?] - If the team's principal's name contains specific letter, which engine they are using and what his/her name?");
             foreach (var em in ems)
             {
                 Console.WriteLine($"Name: {em.Name}, Engine: {em.Engine}");
