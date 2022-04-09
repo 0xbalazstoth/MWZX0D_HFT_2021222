@@ -502,7 +502,6 @@ namespace MWZX0D_HFT_2021222.Client
                 .Add("Exit", ConsoleMenu.Close);
 
             menu.Show();
-
         }
     }
 }

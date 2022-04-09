@@ -31,7 +31,6 @@ namespace MWZX0D_HFT_2021222.Repository.ModelRepositories
                 {
                     prop.SetValue(old, prop.GetValue(item));
                 }
-                //prop.SetValue(old, prop.GetValue(item));
             }
 
             ctx.SaveChanges();

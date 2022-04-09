@@ -20,10 +20,6 @@ namespace MWZX0D_HFT_2021222.Repository.Database
             {
                 // InMemory
                 builder.UseLazyLoadingProxies().UseInMemoryDatabase("formula_racing");
-
-                // LocalDb
-                //string conn = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\formula_racing.mdf;Integrated Security=True;MultipleActiveResultSets=true";
-                //builder.UseLazyLoadingProxies().UseSqlServer(conn);
             }
         }
 
