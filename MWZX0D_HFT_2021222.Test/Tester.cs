@@ -14,7 +14,7 @@ using static MWZX0D_HFT_2021222.Logic.Classes.TeamLogic;
 namespace MWZX0D_HFT_2021222.Test
 {
     [TestFixture]
-    public class LogicTester
+    public class Tester
     {
         DriverLogic driverLogic;
         TeamLogic teamLogic;
@@ -445,7 +445,7 @@ namespace MWZX0D_HFT_2021222.Test
         // Given two teams, is there any driver who's number is between specific range, who is it and what's his number?
         public void GetDriversWhosNumberIsBetweenSpecificRangeTest()
         {
-            var actual = driverLogic.GetDriversWhosNumberIsBetweenSpecificRange("ferrari", "mercedes", 5, 49).ToList();
+            var actual = driverLogic.GetDriversWhosNumberIsBetweenSpecificRange("ferrari", "mercedes", 5, 49);
             var expected = new List<GivenNumber>()
             { 
                 new GivenNumber()
