@@ -29,7 +29,7 @@ namespace MWZX0D_HFT_2021222.Repository.Generic_Repository
             ctx.SaveChanges();
         }
 
-        public IQueryable<T> ReadAll()
+        public IEnumerable<T> ReadAll()
         {
             return ctx.Set<T>();
         }

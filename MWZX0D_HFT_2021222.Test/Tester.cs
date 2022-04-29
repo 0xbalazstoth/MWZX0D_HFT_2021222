@@ -55,7 +55,8 @@ namespace MWZX0D_HFT_2021222.Test
                     EngineManufacturerId = 4,
                     Name = "Renault"
                 },
-            }.AsQueryable();
+            };
+
             var teams = new List<Team>()
             {
                 new Team()
@@ -148,7 +149,8 @@ namespace MWZX0D_HFT_2021222.Test
                     EngineManufacturer = engineManufacturers.ElementAt(2),
                     Principal = "Guenther Steiner"
                 },
-            }.AsQueryable();
+            };
+
             var drivers = new List<Driver>()
             {
                 new Driver()
@@ -271,7 +273,7 @@ namespace MWZX0D_HFT_2021222.Test
                     Nationality = "Brazilian",
                     Born = DateTime.Parse("1996-06-25")
                 },
-            }.AsQueryable();
+            };
 
             #region Add Teams to Engine manufacturer
             // Mercedes engine based teams

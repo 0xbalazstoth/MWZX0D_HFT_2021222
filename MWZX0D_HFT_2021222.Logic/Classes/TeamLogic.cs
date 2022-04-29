@@ -58,7 +58,7 @@ namespace MWZX0D_HFT_2021222.Logic.Classes
             return team;
         }
 
-        public IQueryable<Team> ReadAll()
+        public IEnumerable<Team> ReadAll()
         {
             return this.repo.ReadAll();
         }

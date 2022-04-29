@@ -11,7 +11,7 @@ namespace MWZX0D_HFT_2021222.Logic.Interfaces
         void Create(Team item);
         void Delete(int id);
         Team Read(int id);
-        IQueryable<Team> ReadAll();
+        IEnumerable<Team> ReadAll();
         void Update(Team item);
         IEnumerable<PrincipalLetter> GetEngineManufacturerByPrincipalNameIfContainsSpecificLetter(char letter);
     }
