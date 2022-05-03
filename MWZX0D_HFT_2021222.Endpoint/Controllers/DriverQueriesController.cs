@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace MWZX0D_HFT_2021222.Endpoint.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("/[controller]/[action]")]
     [ApiController]
     public class DriverQueriesController : ControllerBase
     {
@@ -37,7 +37,7 @@ namespace MWZX0D_HFT_2021222.Endpoint.Controllers
 
         [HttpGet]
         public IEnumerable<SameEngine> GetAvgDriversAgeByTheSameEngineBasedTeams()
-        { 
+        {
             return this.driverLogic.GetAvgDriversAgeByTheSameEngineBasedTeams();
         }
     }

@@ -14,22 +14,22 @@ namespace MWZX0D_HFT_2021222.Client
         static RestService rest;
 
         const string DRIVER_ENTITY = "Driver";
-        const string DRIVER_ENDPOINT = "/api/driver";
+        const string DRIVER_ENDPOINT = "/driver";
 
         const string TEAM_ENTITY = "Team";
-        const string TEAM_ENDPOINT = "/api/team";
+        const string TEAM_ENDPOINT = "/team";
 
         const string ENGINE_MANUFACTURER_ENTITY = "EngineManufacturer";
-        const string ENGINE_MANUFACTURER_ENDPOINT = "/api/enginemanufacturer";
+        const string ENGINE_MANUFACTURER_ENDPOINT = "/enginemanufacturer";
 
         const string DRIVER_QUERIES = "DriverQueries";
-        const string DRIVER_QUERIES_GET_DRIVERS_PER_ENGINE_MANUFACTURER_ENDPOINT = "/api/" + DRIVER_QUERIES + "/getdriversperenginemanufacturer";
-        const string DRIVER_WHOS_NUMBER_IS_BETWEEN_SPECIFIC_RANGE_ENDPOINT = "/api/" + DRIVER_QUERIES + "/getdriverswhosnumberisbetweenspecificrange";
-        const string SUM_PER_HEADQUARTER_AT_LEAST_GIVEN_VALUE_ENDPOINT = "/api/" + DRIVER_QUERIES + "/getsumperheadquarteratleastgivenvalue";
-        const string AVG_DRIVERS_AGE_BY_THE_SAME_ENGINE_BASED_TEAMS_ENDPOINT = "/api/" + DRIVER_QUERIES + "/getavgdriversagebythesameenginebasedteams";
+        const string DRIVER_QUERIES_GET_DRIVERS_PER_ENGINE_MANUFACTURER_ENDPOINT = "/" + DRIVER_QUERIES + "/getdriversperenginemanufacturer";
+        const string DRIVER_WHOS_NUMBER_IS_BETWEEN_SPECIFIC_RANGE_ENDPOINT = "/" + DRIVER_QUERIES + "/getdriverswhosnumberisbetweenspecificrange";
+        const string SUM_PER_HEADQUARTER_AT_LEAST_GIVEN_VALUE_ENDPOINT = "/" + DRIVER_QUERIES + "/getsumperheadquarteratleastgivenvalue";
+        const string AVG_DRIVERS_AGE_BY_THE_SAME_ENGINE_BASED_TEAMS_ENDPOINT = "/" + DRIVER_QUERIES + "/getavgdriversagebythesameenginebasedteams";
 
         const string TEAM_QUERIES = "TeamQueries";
-        const string ENGINE_MANUFACTURER_BY_PRINCIPAL_NAME_IF_CONTAINS_SPECIFIC_LETTER_ENDPOINT = "/api/" + TEAM_QUERIES + "/getenginemanufacturerbyprincipalnameifcontainsspecificletter/";
+        const string ENGINE_MANUFACTURER_BY_PRINCIPAL_NAME_IF_CONTAINS_SPECIFIC_LETTER_ENDPOINT = "/" + TEAM_QUERIES + "/getenginemanufacturerbyprincipalnameifcontainsspecificletter/";
 
         #region CRUD
         static void List(string entity)
@@ -460,7 +460,7 @@ namespace MWZX0D_HFT_2021222.Client
 
         static void Main(string[] args)
         {
-            rest = new RestService("http://localhost:59582/");
+            rest = new RestService("http://localhost:43412/");
 
             var driverSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("List", () => List(DRIVER_ENTITY))

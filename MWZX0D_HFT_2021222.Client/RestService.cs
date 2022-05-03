@@ -12,13 +12,8 @@ namespace MWZX0D_HFT_2021222.Client
     {
         HttpClient client;
 
-        public RestService(string baseurl, string pingableEndpoint = "swagger")
+        public RestService(string baseurl)
         {
-            bool isOk = false;
-            do
-            {
-                isOk = Ping(baseurl + pingableEndpoint);
-            } while (isOk == false);
             Init(baseurl);
         }
 
