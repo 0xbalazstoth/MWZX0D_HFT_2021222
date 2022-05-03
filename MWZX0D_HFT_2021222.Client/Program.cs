@@ -49,7 +49,7 @@ namespace MWZX0D_HFT_2021222.Client
                 List<Team> teams = rest.Get<Team>(TEAM_ENDPOINT);
                 foreach (var team in teams)
                 {
-                    Console.WriteLine($"Id: {team.TeamId}: Name: {team.Name}, Licensed in: {team.LicensedIn}, Principal: {team.Principal}");
+                    Console.WriteLine($"Id: {team.TeamId}: Name: {team.Name}, Licensed in: {team.LicensedIn}, Principal: {team.Principal}, Engine Manufacturer Id: {team.EngineManufacturerId}");
                 }
             }
             else if (entity == ENGINE_MANUFACTURER_ENTITY)
@@ -86,7 +86,7 @@ namespace MWZX0D_HFT_2021222.Client
                 int teamId = int.Parse(Console.ReadLine());
 
                 Team team = rest.Get<Team>(TEAM_ENDPOINT).Where(x => x.TeamId == teamId).FirstOrDefault();
-                Console.WriteLine($"Name: {team.Name}, Licensed in: {team.LicensedIn}, Principal: {team.Principal}");
+                Console.WriteLine($"Name: {team.Name}, Licensed in: {team.LicensedIn}, Principal: {team.Principal}, Engine Manufacturer Id: {team.EngineManufacturerId}");
             }
             else if (entity == ENGINE_MANUFACTURER_ENTITY)
             {
@@ -121,12 +121,16 @@ namespace MWZX0D_HFT_2021222.Client
                 Console.Write("Born (yyyy-MM-dd): ");
                 DateTime born = DateTime.Parse(Console.ReadLine());
 
+                Console.Write("Team Id: ");
+                int teamId = int.Parse(Console.ReadLine());
+
                 rest.Post(new Driver()
                 {
                     Name = name,
                     Number = number,
                     Nationality = nat,
-                    Born = born
+                    Born = born,
+                    TeamId = teamId
                 }, DRIVER_ENDPOINT);
 
                 Console.WriteLine("[+] New driver created!");
@@ -144,11 +148,15 @@ namespace MWZX0D_HFT_2021222.Client
                 Console.Write("Principal: ");
                 string principal = Console.ReadLine();
 
+                Console.Write("Engine manufacturer Id: ");
+                int emId = int.Parse(Console.ReadLine());
+
                 rest.Post(new Team()
                 {
                     Name = name,
                     LicensedIn = licensedIn,
-                    Principal = principal
+                    Principal = principal,
+                    EngineManufacturerId = emId
                 }, TEAM_ENDPOINT);
 
                 Console.WriteLine("[+] New team created!");
@@ -246,13 +254,34 @@ namespace MWZX0D_HFT_2021222.Client
                     }
                 }
 
-                rest.Put(new Driver() { 
+                Console.Write("TeamId: ");
+                string teamIdStr = Console.ReadLine();
+
+                if (teamIdStr == "" || teamIdStr == null)
+                {
+                    Console.WriteLine("[-] Driver\'s team id not updated!");
+                }
+                else
+                {
+                    if (Int32.TryParse(teamIdStr, out int teamId))
+                    {
+                        Console.WriteLine("[+] Driver\'s team id updated!");
+                        driver.TeamId = teamId;
+                    }
+                    else
+                    {
+                        Console.WriteLine("[-] Driver\'s team id not updated because of invalid value given by user!");
+                    }
+                }
+
+                rest.Put(new Driver()
+                {
                     Name = driver.Name,
                     Born = driver.Born,
                     DriverId = driverId,
                     TeamId = driver.TeamId,
                     Nationality = driver.Nationality,
-                    Number = driver.Number
+                    Number = driver.Number,
                 }, DRIVER_ENDPOINT + "/" + $"{driverId}");
             }
             else if (entity == TEAM_ENTITY)
@@ -303,12 +332,33 @@ namespace MWZX0D_HFT_2021222.Client
                     Console.WriteLine("[+] Team\'s principal updated!");
                 }
 
+                Console.Write("Engine Manufacturer Id: ");
+                string emIdStr = Console.ReadLine();
+
+                if (emIdStr == "" || emIdStr == null)
+                {
+                    Console.WriteLine("[-] Team\'s engine manufacturer id not updated!");
+                }
+                else
+                {
+                    if (Int32.TryParse(emIdStr, out int emId))
+                    {
+                        Console.WriteLine("[+] Team\'s engine manufacturer id updated!");
+                        team.EngineManufacturerId = emId;
+                    }
+                    else
+                    {
+                        Console.WriteLine("[-] Team\'s engine manufacturer id not updated because of invalid value given by user!");
+                    }
+                }
+
                 rest.Put(new Team()
                 {
                     Name = team.Name,
                     Principal = team.Principal,
                     LicensedIn = team.LicensedIn,
-                    TeamId = team.TeamId
+                    TeamId = team.TeamId,
+                    EngineManufacturerId = team.EngineManufacturerId
                 }, TEAM_ENDPOINT + "/" + $"{teamId}");
             }
             else if (entity == ENGINE_MANUFACTURER_ENTITY)
