@@ -34,7 +34,8 @@ namespace MWZX0D_HFT_2021222.Endpoint.Controllers
             this.logic.Create(value);
         }
 
-        [HttpPut("{id}")]
+        //[HttpPut("{id}")]
+        [HttpPut]
         public void Update([FromBody] EngineManufacturer value)
         {
             this.logic.Update(value);

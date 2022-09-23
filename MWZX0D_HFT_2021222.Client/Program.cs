@@ -282,7 +282,7 @@ namespace MWZX0D_HFT_2021222.Client
                     TeamId = driver.TeamId,
                     Nationality = driver.Nationality,
                     Number = driver.Number,
-                }, DRIVER_ENDPOINT + "/" + $"{driverId}");
+                }, DRIVER_ENDPOINT);
             }
             else if (entity == TEAM_ENTITY)
             {
@@ -359,7 +359,7 @@ namespace MWZX0D_HFT_2021222.Client
                     LicensedIn = team.LicensedIn,
                     TeamId = team.TeamId,
                     EngineManufacturerId = team.EngineManufacturerId
-                }, TEAM_ENDPOINT + "/" + $"{teamId}");
+                }, TEAM_ENDPOINT);
             }
             else if (entity == ENGINE_MANUFACTURER_ENTITY)
             {
@@ -387,7 +387,7 @@ namespace MWZX0D_HFT_2021222.Client
                 {
                     Name = em.Name,
                     EngineManufacturerId = emId
-                }, ENGINE_MANUFACTURER_ENDPOINT + "/" + $"{emId}");
+                }, ENGINE_MANUFACTURER_ENDPOINT);
             }
         }
 
