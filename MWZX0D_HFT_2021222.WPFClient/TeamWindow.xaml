@@ -5,8 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MWZX0D_HFT_2021222.WPFClient"
         mc:Ignorable="d"
-        Title="TeamWindow" Height="450" Width="800">
+        Title="Team Editor" Height="450" Width="800" Background="#171717">
+    <Window.DataContext>
+        <local:TeamWindowViewModel></local:TeamWindowViewModel>
+    </Window.DataContext>
+
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <ListBox ItemsSource="{Binding Teams}" SelectedItem="{Binding SelectedTeam}" Grid.Column="0" Margin="5">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Name}"></Label>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="1">
+            <Button Content="Create Team" Command="{Binding CreateTeamCommand}" Margin="5" Height="50"></Button>
+            <Button Content="Update Team" Command="{Binding UpdateTeamCommand}" Margin="5" Height="50"></Button>
+            <Button Content="Delete Team" Command="{Binding DeleteTeamCommand}" Margin="5" Height="50"></Button>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Margin="5">
+            <Label Content="Name"/>
+            <TextBox Text="{Binding SelectedTeam.Name}" Padding="10" Margin="0,0,0,10"/>
+
+            <Label Content="Licensed in"></Label>
+            <TextBox Text="{Binding SelectedTeam.LicensedIn}" Padding="10" Margin="0,0,0,10"></TextBox>
+
+            <Label Content="Principal"></Label>
+            <TextBox Text="{Binding SelectedTeam.Principal}" Padding="10" Margin="0,0,0,10"></TextBox>
+        </StackPanel>
     </Grid>
 </Window>
