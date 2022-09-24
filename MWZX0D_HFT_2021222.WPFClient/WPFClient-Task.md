@@ -1,7 +1,10 @@
 ﻿# Rétegzés
 	- [X] UI
 	- [X] VM
-	- [] Logic
+	- [X] Logic
 	- [X] RestService commandokkal
 	- [] 3 táblára
-	- [] SignalR
+		- [X] Driver
+		- [] Engine Manufacturer
+		- [] Team
+	- [X] SignalR
