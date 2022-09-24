@@ -17,3 +17,17 @@ th, td {
 th {
     background-color: lightblue;
 }
+
+#formDiv {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1vh;
+    margin-bottom: 5vh;
+}
+
+#updateformDiv {
+    display: none;
+    flex-direction: column;
+    row-gap: 1vh;
+    margin-bottom: 5vh;
+}

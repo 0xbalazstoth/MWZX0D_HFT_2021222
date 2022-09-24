@@ -7,6 +7,27 @@
 </head>
 <body>
     <h1>Driver catalog</h1>
+
+    <div id="formDiv">
+        <h4>Add driver</h4>
+        <input placeholder="Name" type="text" id="driverName" />
+        <input placeholder="Number" type="number" id="driverNumber" />
+        <input placeholder="Nationality" type="text" id="driverNationality" />
+        <input placeholder="Born" type="date" id="driverBorn" />
+
+        <button type="button" onclick="create()">Add Driver</button>
+    </div>
+
+    <div id="updateformDiv">
+        <h4>Update driver</h4>
+        <input placeholder="Name" type="text" id="driverNameUpdate" />
+        <input placeholder="Number" type="number" id="driverNumberUpdate" />
+        <input placeholder="Nationality" type="text" id="driverNationalityUpdate" />
+        <input placeholder="Born" type="date" id="driverBornUpdate" />
+
+        <button type="button" onclick="update()">Update Driver</button>
+    </div>
+
     <table>
         <thead>
             <tr>
@@ -15,13 +36,14 @@
                 <th>Number</th>
                 <th>Nationality</th>
                 <th>Born</th>
-                <th>Team Id</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody id="resultarea">
         </tbody>
     </table>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
     <script src="index.js"></script>
 </body>
 </html>
