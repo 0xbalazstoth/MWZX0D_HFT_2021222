@@ -5,28 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MWZX0D_HFT_2021222.WPFClient"
         mc:Ignorable="d"
-        Title="Driver Editor" Height="450" Width="800">
+        Title="Menu" MinHeight="280" MinWidth="300" Height="280" Width="300" Background="#171717">
     <Window.DataContext>
-        <local:MainWindowViewModel />
+        <local:MainWindowViewModel></local:MainWindowViewModel>
     </Window.DataContext>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding Drivers}" SelectedItem="{Binding SelectedDriver}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Label Content="{Binding Name}"></Label>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <StackPanel Grid.Column="1">
-            <Label Content="Name" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedDriver.Name}" Padding="10" Margin="0,0,0,30"/>
-            <Button Content="Create Driver" Command="{Binding CreateDriverCommand}" Margin="10" Padding="10"></Button>
-            <Button Content="Delete Driver" Command="{Binding DeleteDriverCommand}" Margin="10" Padding="10"></Button>
-            <Button Content="Update Driver" Command="{Binding UpdateDriverCommand}" Margin="10" Padding="10"></Button>
-        </StackPanel>
-    </Grid>
+    <StackPanel Margin="10">
+        <Button Height="40" Margin="5" Command="{Binding OpenDriversWindowCommand}" Content="Drivers"></Button>
+        <Button Height="40" Margin="5" Command="{Binding OpenTeamsWindowCommand}" Content="Teams"></Button>
+        <Button Height="40" Margin="5" Command="{Binding OpenEngineManufacturersWindowCommand}" Content="Engine Manufacturers"></Button>
+        <Button Height="40" Margin="5" Background="#FE7272" Command="{Binding ExitCommand}" Content="Exit"></Button>
+    </StackPanel>
 </Window>

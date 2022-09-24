@@ -12,38 +12,12 @@ using System.Windows.Input;
 
 namespace MWZX0D_HFT_2021222.WPFClient
 {
-    public class MainWindowViewModel : ObservableRecipient
+    public class MainWindowViewModel
     {
-        public RestCollection<Driver> Drivers { get; set; }
-        private Driver selectedDriver;
-
-        public Driver SelectedDriver
-        {
-            get { return selectedDriver; }
-            set
-            {
-                if (value != null)
-                {
-                    selectedDriver = new Driver()
-                    {
-                        Name = value.Name,
-                        DriverId = value.DriverId,
-                        Team = value.Team,
-                        Born = value.Born,
-                        Nationality = value.Nationality,
-                        Number = value.Number,
-                        TeamId = value.TeamId
-                    };
-                }
-
-                OnPropertyChanged();
-                (DeleteDriverCommand as RelayCommand).NotifyCanExecuteChanged();
-            }
-        }
-
-        public ICommand CreateDriverCommand { get; set; }
-        public ICommand DeleteDriverCommand { get; set; }
-        public ICommand UpdateDriverCommand { get; set; }
+        public ICommand OpenDriversWindowCommand { get; set; }
+        public ICommand OpenTeamsWindowCommand { get; set; }
+        public ICommand OpenEngineManufacturersWindowCommand { get; set; }
+        public ICommand ExitCommand { get; set; }
 
         public static bool IsInDesignMode
         {
@@ -58,26 +32,28 @@ namespace MWZX0D_HFT_2021222.WPFClient
         {
             if (!IsInDesignMode)
             {
-                string baseURL = "http://localhost:43412/";
-
-                Drivers = new RestCollection<Driver>(baseURL, "driver", "hub");
-
-                CreateDriverCommand = new RelayCommand(() =>
+                OpenDriversWindowCommand = new RelayCommand(() =>
                 {
-                    Drivers.Add(new Driver() { Name = SelectedDriver.Name });
+                    DriverWindow driverWindow = new DriverWindow();
+                    driverWindow.ShowDialog();
                 });
 
-                UpdateDriverCommand = new RelayCommand(() =>
+                OpenTeamsWindowCommand = new RelayCommand(() =>
                 {
-                    Drivers.Update(SelectedDriver);
+                    TeamWindow teamWindow = new TeamWindow();
+                    teamWindow.ShowDialog();
                 });
 
-                DeleteDriverCommand = new RelayCommand(() =>
+                OpenEngineManufacturersWindowCommand = new RelayCommand(() =>
                 {
-                    Drivers.Delete(SelectedDriver.DriverId);
-                }, () => SelectedDriver != null);
+                    EngineManufacturerWindow engineManufacturerWindow = new EngineManufacturerWindow();
+                    engineManufacturerWindow.ShowDialog();
+                });
 
-                SelectedDriver = new Driver();
+                ExitCommand = new RelayCommand(() =>
+                {
+                    Environment.Exit(0);
+                });
             }
         }
     }

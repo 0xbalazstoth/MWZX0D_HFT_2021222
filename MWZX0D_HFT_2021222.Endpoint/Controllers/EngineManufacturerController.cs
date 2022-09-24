@@ -14,9 +14,10 @@ namespace MWZX0D_HFT_2021222.Endpoint.Controllers
         IEngineManufacturerLogic logic;
         IHubContext<SignalRHub> hub;
 
-        public EngineManufacturerController(IEngineManufacturerLogic logic)
+        public EngineManufacturerController(IEngineManufacturerLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub = hub;
         }
 
         [HttpGet]
@@ -38,7 +39,6 @@ namespace MWZX0D_HFT_2021222.Endpoint.Controllers
             this.hub.Clients.All.SendAsync("EngineManufacturerCreated", value);
         }
 
-        //[HttpPut("{id}")]
         [HttpPut]
         public void Update([FromBody] EngineManufacturer value)
         {

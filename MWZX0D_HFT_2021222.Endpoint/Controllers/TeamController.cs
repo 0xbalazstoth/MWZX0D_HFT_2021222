@@ -14,9 +14,10 @@ namespace MWZX0D_HFT_2021222.Endpoint.Controllers
         ITeamLogic logic;
         IHubContext<SignalRHub> hub;
 
-        public TeamController(ITeamLogic logic)
+        public TeamController(ITeamLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub = hub;
         }
 
         [HttpGet]
@@ -38,7 +39,6 @@ namespace MWZX0D_HFT_2021222.Endpoint.Controllers
             this.hub.Clients.All.SendAsync("TeamCreated", value);
         }
 
-        //[HttpPut("{id}")]
         [HttpPut]
         public void Update([FromBody] Team value)
         {

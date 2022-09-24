@@ -4,6 +4,103 @@
              xmlns:local="clr-namespace:MWZX0D_HFT_2021222.WPFClient"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Background" Value="#1E2B4E"/>
+                <Setter Property="Foreground" Value="#FAB001"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="BorderBrush" Value="Transparent"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+                <Style.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"></Setter>
+                    </Style>
+                </Style.Resources>
+            </Style>
+            
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="Background" Value="LightBlue"></Setter>
+                <Setter Property="Foreground" Value="#1E2B4E"/>
+                <Setter Property="Margin" Value="0,0,0,5"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+                <Setter Property="BorderBrush" Value="Transparent"></Setter>
+                <Style.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"></Setter>
+                    </Style>
+                </Style.Resources>
+            </Style>
+
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="LightGreen" TargetName="Border" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" Value="#FAB001"></Setter>
+                <Setter Property="Foreground" Value="#1E2B4E"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Style.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"></Setter>
+                    </Style>
+                </Style.Resources>
+            </Style>
+
+            <Style TargetType="{x:Type ListBox}">
+                <Setter Property="Background" Value="Transparent"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+                <Style.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"></Setter>
+                    </Style>
+
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Height" Value="40"></Setter>
+                        <Setter Property="FontSize" Value="15"></Setter>
+                        <Setter Property="Background" Value="#1E2B4E"></Setter>
+                        <Setter Property="Foreground" Value="#FAB001"></Setter>
+                        <Setter Property="BorderThickness" Value="0"></Setter>
+                        <Setter Property="BorderThickness" Value="0"></Setter>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                        <Setter Property="Margin" Value="5"></Setter>
+
+                        <Style.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="10"></Setter>
+                            </Style>
+                        </Style.Resources>
+                    </Style>
+                </Style.Resources>
+            </Style>
+
+            <Style TargetType="{x:Type DatePicker}">
+                <Setter Property="Background" Value="#1E2B4E"/>
+                <Setter Property="Foreground" Value="#FAB001"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+                <Style.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"></Setter>
+                    </Style>
+                    <Style TargetType="DatePickerTextBox">
+                        <Setter Property="Background" Value="#1E2B4E"/>
+                        <Setter Property="BorderThickness" Value="0"></Setter>
+                        <Setter Property="BorderThickness" Value="0"></Setter>
+                    </Style>
+                </Style.Resources>
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
