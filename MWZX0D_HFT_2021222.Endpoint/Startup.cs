@@ -68,6 +68,8 @@ namespace MWZX0D_HFT_2021222.Endpoint
                 }
             }));
 
+            app.UseCors(x => x.AllowCredentials().AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:30427"));
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
