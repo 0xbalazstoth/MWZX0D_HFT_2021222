@@ -23,7 +23,7 @@
         </ListBox>
         <StackPanel Grid.Column="1">
             <Label Content="Name" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedDriver.Name}" Padding="10" Margin="0,0,0,50"/>
+            <TextBox Text="{Binding SelectedDriver.Name}" Padding="10" Margin="0,0,0,30"/>
             <Button Content="Create Driver" Command="{Binding CreateDriverCommand}" Margin="10" Padding="10"></Button>
             <Button Content="Delete Driver" Command="{Binding DeleteDriverCommand}" Margin="10" Padding="10"></Button>
             <Button Content="Update Driver" Command="{Binding UpdateDriverCommand}" Margin="10" Padding="10"></Button>

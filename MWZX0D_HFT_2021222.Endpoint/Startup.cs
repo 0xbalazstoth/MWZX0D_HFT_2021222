@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MWZX0D_HFT_2021222.Endpoint.Services;
 using MWZX0D_HFT_2021222.Logic.Classes;
 using MWZX0D_HFT_2021222.Logic.Exceptions;
 using MWZX0D_HFT_2021222.Logic.Interfaces;
@@ -34,6 +35,8 @@ namespace MWZX0D_HFT_2021222.Endpoint
             services.AddTransient<IDriverLogic, DriverLogic>();
             services.AddTransient<ITeamLogic, TeamLogic>();
             services.AddTransient<IEngineManufacturerLogic, EngineManufacturerLogic>();
+
+            services.AddSignalR();
 
             services.AddControllers();
         }
@@ -70,6 +73,7 @@ namespace MWZX0D_HFT_2021222.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

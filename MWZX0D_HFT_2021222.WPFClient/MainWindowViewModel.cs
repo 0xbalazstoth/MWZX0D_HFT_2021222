@@ -22,7 +22,21 @@ namespace MWZX0D_HFT_2021222.WPFClient
             get { return selectedDriver; }
             set
             {
-                SetProperty(ref selectedDriver, value);
+                if (value != null)
+                {
+                    selectedDriver = new Driver()
+                    {
+                        Name = value.Name,
+                        DriverId = value.DriverId,
+                        Team = value.Team,
+                        Born = value.Born,
+                        Nationality = value.Nationality,
+                        Number = value.Number,
+                        TeamId = value.TeamId
+                    };
+                }
+
+                OnPropertyChanged();
                 (DeleteDriverCommand as RelayCommand).NotifyCanExecuteChanged();
             }
         }
@@ -46,14 +60,13 @@ namespace MWZX0D_HFT_2021222.WPFClient
             {
                 string baseURL = "http://localhost:43412/";
 
-                Drivers = new RestCollection<Driver>(baseURL, "driver");
+                Drivers = new RestCollection<Driver>(baseURL, "driver", "hub");
 
                 CreateDriverCommand = new RelayCommand(() =>
                 {
-                    Drivers.Add(new Driver() { Name = "New Driver" });
+                    Drivers.Add(new Driver() { Name = SelectedDriver.Name });
                 });
 
-                // host/controller/id -> http://localhost:43412/driver/5
                 UpdateDriverCommand = new RelayCommand(() =>
                 {
                     Drivers.Update(SelectedDriver);
@@ -63,6 +76,8 @@ namespace MWZX0D_HFT_2021222.WPFClient
                 {
                     Drivers.Delete(SelectedDriver.DriverId);
                 }, () => SelectedDriver != null);
+
+                SelectedDriver = new Driver();
             }
         }
     }
